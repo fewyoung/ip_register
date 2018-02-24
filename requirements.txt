@@ -1,0 +1,7 @@
+Flask
+Flask-Bootstrap
+Flask-Login
+Flask-Script
+Flask-SQLAlchemy
+Flask-WTF
+wfastcgi

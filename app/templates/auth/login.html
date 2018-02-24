@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}IP登记-登录{% endblock %}
+
+
+{% block page_content %}
+
+
+<div class="page-header">
+    <h1><span class="glyphicon glyphicon-home"></span>&nbsp;Home</h1>
+</div>
+
+<div class="center-block" style="width:200px;">
+	
+	{% if current_user.is_authenticated %}
+	<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#logout">
+		<span class="glyphicon glyphicon-log-out"></span>
+		&nbsp;退出
+	</button>
+	{% else %}
+	<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#login">
+		<span class="glyphicon glyphicon-user"></span>
+		&nbsp;登录
+	</button>
+	{% endif %}
+
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel1">
+						<span class="glyphicon glyphicon-user"></span>
+						&nbsp;登录</h4>
+				</div>
+				<div class="modal-body">{{ wtf.quick_form(form,
+					button_map={'submit':'primary btn-block'}) }}
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel2">
+						<span class="glyphicon glyphicon-log-out"></span>
+						&nbsp;退出
+					</h4>
+				</div>
+				<div class="modal-body">您确定要退出吗？</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-ban-circle"></span>
+						取消
+					</button>
+					<a class="btn btn-danger" href="{{ url_for('auth.logout') }}">
+						<span class="glyphicon glyphicon-log-out"></span>
+						&nbsp;退出
+					</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock %}
+	
+
+{% block scripts %}
+{{ super() }}
+{% if current_user.is_authenticated %}
+<script>
+	$('#logout').modal({backdrop: 'static', keyboard: false});
+</script>
+{% else %}
+<script>
+	$('#login').modal({backdrop: 'static', keyboard: false});
+	$('#username').focus();
+	$(document).keyup(function(event){
+		if(event.keyCode ==13){
+		$("#submit").trigger("click");
+	}
+});
+</script>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+

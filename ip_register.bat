@@ -1,0 +1,1 @@
+start cmd /k "cd C:\inetpub\wwwroot\venv\Scripts&&activate&&cd C:\Users\Administrator\Desktop\python\ip_register"
