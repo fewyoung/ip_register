@@ -11,8 +11,7 @@ class AddForm(FlaskForm):
 		
 	add_id = HiddenField('id')
 	add_name = StringField('姓名',
-		validators=[Length(max=10, message="超过最大10个字符")],
-		render_kw={"placeholder":"请输入用户的姓名"})
+		validators=[Length(max=10, message="超过最大10个字符")])
 	add_department = StringField('部门',
 		validators=[Length(max=10, message="超过最大10个字符")])
 	add_office = StringField('办公室',
@@ -31,16 +30,7 @@ class AddForm(FlaskForm):
 	add_remark = StringField('备注',
 		validators=[Length(max=20, message="超过最大20个字符")])
 	add_submit = SubmitField('确定')
-	
-	#~ def validate_add_name(self, field):
-		#~ if field.data == '':
-			#~ flash('姓名 不能为空')
-			#~ raise ValidationError('错误：姓名 不能为空')
-		#~ segment = self.segment
-		#~ if segment.query.filter_by(name = field.data).first():	
-			#~ flash('错误：姓名 已存在')		
-			#~ raise ValidationError('错误：姓名 已存在')
-						
+							
 	def validate_add_ip(self, field):
 		if field.data == '':
 			flash('IP 不能为空')
@@ -87,17 +77,7 @@ class EditForm(FlaskForm):
 	edit_remark = StringField('备注',
 		validators=[Length(max=20, message="超过最大20个字符")])
 	edit_submit = SubmitField('确定')
-	del_submit = SubmitField('删除')
-	
-	#~ def validate_edit_name(self, field):
-		#~ if field.data == '':
-			#~ flash('姓名 不能为空')
-			#~ raise ValidationError('错误：姓名 不能为空')
-		#~ segment = self.segment
-		#~ ser = segment.query.filter_by(name = field.data).first()	
-		#~ if ser is not None and str(ser.id) != self.edit_id.data:
-			#~ flash('错误：姓名 已存在')
-			#~ raise ValidationError('错误：姓名 已存在')
+	del_submit = SubmitField('删除')	
 
 	def validate_edit_ip(self, field):
 		if field.data == '':
