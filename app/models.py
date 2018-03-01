@@ -35,6 +35,8 @@ class Registration_Lan(db.Model):
 	department = db.Column(db.String(10))
 	office = db.Column(db.String(10))
 	ip = db.Column(db.String(20), unique = True, index = True)
+	mask = db.Column(db.String(20))
+	gateway = db.Column(db.String(20))
 	vlan = db.Column(db.String(10))
 	port = db.Column(db.String(10))
 	remark = db.Column(db.String(20))
@@ -67,25 +69,11 @@ class Registration_Wan(db.Model):
 	department = db.Column(db.String(10))
 	office = db.Column(db.String(10))
 	ip = db.Column(db.String(20), unique = True, index = True)
+	mask = db.Column(db.String(20))
+	gateway = db.Column(db.String(20))
 	vlan = db.Column(db.String(10))
 	port = db.Column(db.String(10))
 	remark = db.Column(db.String(20))
-
-	
-	@staticmethod
-	def generate_fake(count = 100):
-		from random import seed
-		import forgery_py
-		seed()
-		for i in range(count):
-			r = Registration_Wan(name = forgery_py.name.full_name(),
-				department = 'wan',
-				office = 'wan-202',
-				ip = forgery_py.internet.ip_v4(),
-				port = 'wan-2-2',
-				remark = forgery_py.internet.user_name(True))
-			db.session.add(r)
-			db.session.commit()
 	
 	def __repr__(self):
 		return '<User %r>' % self.name	

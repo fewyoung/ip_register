@@ -10,6 +10,8 @@ def add_reg(add_form, Reg):
 				  department = add_form.add_department.data,
 				  office = add_form.add_office.data,
 				  ip = add_form.add_ip.data,
+				  mask = add_form.add_mask.data,
+				  gateway = add_form.add_gateway.data,
 				  vlan = add_form.add_vlan.data,
 				  port = add_form.add_port.data,
 				  remark = add_form.add_remark.data)
@@ -26,7 +28,9 @@ def edit_reg(edit_form, Reg):
 	edit_reg.name = edit_form.edit_name.data
 	edit_reg.department = edit_form.edit_department.data
 	edit_reg.office = edit_form.edit_office.data
-	edit_reg.ip = edit_form.edit_ip.data
+	edit_reg.ip = edit_form.edit_ip.data	
+	edit_reg.mask = edit_form.edit_mask.data	
+	edit_reg.gateway = edit_form.edit_gateway.data	
 	edit_reg.vlan = edit_form.edit_vlan.data
 	edit_reg.port = edit_form.edit_port.data
 	edit_reg.remark = edit_form.edit_remark.data
@@ -44,7 +48,7 @@ def del_reg(edit_form, Reg):
 	
 def search_reg(search_form, edit_forms, Reg):
 	key_dict = {'1':Reg.name, '2':Reg.department, '3':Reg.office,
-		'4':Reg.ip, '5':Reg.vlan, '6':Reg.port, '7':Reg.remark}
+		'4':Reg.ip, '5':Reg.mask, '6':Reg.gateway, '7':Reg.vlan, '8':Reg.port, '9':Reg.remark}
 		
 	if search_form.selectfield.data == str(None):
 		search_field = search_form.selectfield.data = session.get('selectfield')
@@ -69,6 +73,8 @@ def search_reg(search_form, edit_forms, Reg):
 			edit_form.edit_department.data = reg.department
 			edit_form.edit_office.data = reg.office
 			edit_form.edit_ip.data = reg.ip
+			edit_form.edit_mask.data = reg.mask
+			edit_form.edit_gateway.data = reg.gateway
 			edit_form.edit_vlan.data = reg.vlan
 			edit_form.edit_port.data = reg.port
 			edit_form.edit_remark.data = reg.remark
@@ -124,7 +130,7 @@ def wan_index():
 	if segment_index(add_form, search_form, edit_forms, Registration_Wan):
 		return redirect(url_for('main.wan_index'))
 		
-	search_reg(search_form, edit_forms, Registration_Lan)
+	search_reg(search_form, edit_forms, Registration_Wan)
 	
 	return render_template('main.html', 
 		add_form=add_form,

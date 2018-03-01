@@ -20,6 +20,10 @@ class AddForm(FlaskForm):
 	add_ip = StringField('IP', description="* 必填项",
 		validators=[Length(max=20, message="超过最大20个字符")],
 		render_kw={"placeholder":"请输入用户的IP地址"})
+	add_mask = StringField('掩码',
+		validators=[Length(max=20, message="超过最大20个字符")])
+	add_gateway = StringField('网关',
+		validators=[Length(max=20, message="超过最大20个字符")])
 	add_vlan = StringField('Vlan',
 		validators=[Length(max=10, message="超过最大10个字符")])
 	add_port = StringField('交换机端口',
@@ -50,7 +54,7 @@ class AddForm(FlaskForm):
 class SearchForm(FlaskForm):	
 	search_id = HiddenField('id')
 	keywords = [('0','全部记录'), ('1','姓名'), ('2','部门'), ('3','办公室'),
-		('4','IP'), ('5','Vlan'), ('6','交换机端口'), ('7','备注')]
+		('4','IP'), ('5','掩码'),('6','网关'),('7','Vlan'), ('8','交换机端口'), ('9','备注')]
 	selectfield = SelectField('按类型查询' ,
 		validators=[InputRequired()] ,
 		choices=keywords)
@@ -72,6 +76,10 @@ class EditForm(FlaskForm):
 		validators=[Length(max=10, message="超过最大10个字符")])
 	edit_ip = StringField('IP', description="* 必填项",
 		validators=[Length(max=20, message="超过最大20个字符")])
+	edit_mask = StringField('掩码',
+		validators=[Length(max=20, message="超过最大10个字符")])
+	edit_gateway = StringField('网关',
+		validators=[Length(max=20, message="超过最大10个字符")])
 	edit_vlan = StringField('Vlan',
 		validators=[Length(max=10, message="超过最大10个字符")])
 	edit_port = StringField('交换机端口',

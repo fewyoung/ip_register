@@ -132,7 +132,7 @@
 		<thead>
 			<tr class="success">
 				<th>姓名</th><th>部门</th><th>办公室</th>
-				<th>IP</th><th>Vlan</th>
+				<th>IP</th><th>掩码</th><th>网关</th><th>Vlan</th>
 				<th>交换机端口</th><th>备注</th>
 				<th>修改</th><th>删除</th>
 			</tr>
@@ -144,6 +144,8 @@
 				<td>{{ edit_form.edit_department.data }}</td>
 				<td>{{ edit_form.edit_office.data }}</td>
 				<td>{{ edit_form.edit_ip.data }}</td>
+				<td>{{ edit_form.edit_mask.data }}</td>
+				<td>{{ edit_form.edit_gateway.data }}</td>
 				<td>{{ edit_form.edit_vlan.data }}</td>
 				<td>{{ edit_form.edit_port.data }}</td>
 				<td>{{ edit_form.edit_remark.data }}</td>
