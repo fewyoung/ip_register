@@ -65,7 +65,7 @@ def search_reg(search_form, edit_forms, Reg):
 			regs = Reg.query.filter(
 				key_dict[search_field].like(
 					'%s%s%s' % ('%',search_key,'%'))).order_by(
-						key_dict[search_field])												
+						key_dict[search_field]).order_by(Reg.id.desc())											
 		for reg in regs:
 			edit_form = EditForm(Reg)
 			edit_form.edit_id.data = reg.id
